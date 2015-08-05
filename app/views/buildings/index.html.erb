@@ -1,0 +1,18 @@
+<h2>Buildings Listing</h2>
+<%= link_to "New", new_building_path %>
+
+<% if @buildings %>
+  <% for building in @buildings %>
+
+  <div style="border:thin solid black">
+    <p> address: <%= building.address %> </p>
+
+    <p><%= link_to "View", building_path(building)%></p>
+    <%= button_to 'Delete', building_path(building), method: :delete %>
+  </div>
+
+  <% end %>
+
+<% end %>
+
+

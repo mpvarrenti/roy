@@ -1,0 +1,5 @@
+<%= form_for :building, url: buildings_path do |f| %>
+  Address: <%= f.text_field :address %><br />
+  Notes: <%= f.text_area :notes, rows: 5, cols: 40 %><br />
+  <%= f.submit %>
+<% end %>

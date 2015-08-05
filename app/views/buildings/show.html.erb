@@ -1,0 +1,6 @@
+<h2> <%=@building.address%> </h2>
+
+<p><%= link_to "New Layout Option", new_option_path(building: {id:@building.id})%></p>
+
+
+<p><%= link_to "Return to Buildings", buildings_path %></p>

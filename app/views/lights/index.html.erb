@@ -1,0 +1,18 @@
+<h2>Lights Listing</h2>
+<%= link_to "New", new_light_path %>
+
+<% if @lights %>
+  <% for light in @lights %>
+
+  <div style="border:thin solid black">
+    <p> name: <%= light.name %> </p>
+    <p> watts: <%= light.watts %> </p>
+    <p> price: <%= light.price %> </p>
+    <%= link_to "View", light_path(light)%>
+    <%= button_to 'Delete', light_path(light), method: :delete %>
+  </div>
+
+  <% end %>
+
+<% end %>
+
