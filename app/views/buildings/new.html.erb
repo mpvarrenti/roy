@@ -1,5 +1,8 @@
-<%= form_for :building, url: buildings_path do |f| %>
-  Address: <%= f.text_field :address %><br />
-  Notes: <%= f.text_area :notes, rows: 5, cols: 40 %><br />
-  <%= f.submit %>
-<% end %>
+<div class="container">
+
+  <%= form_for :building, url: buildings_path, html: {role: "form"} do |f| %>
+    Address: <%= f.text_field :address, class: "form-control" %><br />
+    <%= f.submit class: "btn btn-default" %>
+  <% end %>
+
+</div>

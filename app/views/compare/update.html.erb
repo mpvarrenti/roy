@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="col-md-6">
+    <div class='panel <%= @option_a ? "panel-success" : "panel-danger" %>'>
+
+      <div class="panel-heading">
+        <h3 class="panel-title">Option A: <%= @option_a ? @option_a.name : "Unset" %></h3>
+      </div>
+
+      <div class="panel-body">
+        <%= form_for :comparison, url: compare_path("go"), method: :patch, class: "form-control" do |f| %>
+          <%= f.hidden_field :building_id, value: @building.id %>
+          <%= label_tag :option_a_id, "Set Option A..." %>
+          <%= f.select :option_a_id, Option.all.where(building_id:@building.id).collect { |o| [ o.name, o.id ] }, include_blank: true, class:"form-control" %>
+          <%= f.submit "Select" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
+
+    <div class="panel <%= @option_b ? 'panel-success' : 'panel-danger'  %>">
+      <div class="panel-heading">
+        <h3 class="panel-title">Option B: <%= @option_b ? @option_b.name : "Unset" %></h3>
+      </div>
+
+      <div class="panel-body">
+        <%= form_for :comparison, url: compare_path("go"), method: :patch, class: "form-control" do |f| %>
+          <% if params[:comparison] %>
+            <%= f.hidden_field :option_a_id, value:params[:comparison][:option_a_id] %>
+            <%= f.hidden_field :building_id, value: @building.id %>
+          <% end %>
+          <%= label_tag :option_b_id, "Set Option B..." %>
+          <%= f.select :option_b_id, Option.all.where(building_id:@building.id).collect { |o| [ o.name, o.id ] }, include_blank: true, class:"form-control" %>
+          <%= f.submit "Select" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Option Name</th>
+          <th>No. Lights</th>
+          <th>Total Watts</th>
+          <th>Installation</th>
+          <th>Running costs P.A.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @option_a %>
+          <tr>
+            <td><%= @option_a.name %></td>
+            <td><%= @option_a.lights.count %></td>
+            <td><%= @option_a.watts %></td>
+            <td><%= number_to_currency @option_a.installation %></td>
+            <td><%= number_to_currency @option_a.pa %></td>
+          </tr>
+        <% end %>
+        <% if @option_b %>
+          <tr>
+            <td><%= @option_b.name %></td>
+            <td><%= @option_b.lights.count %></td>
+            <td><%= @option_b.watts %></td>
+            <td><%= number_to_currency @option_b.installation %></td>
+            <td><%= number_to_currency @option_b.pa %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<% if @roi %>
+  <div class="container">
+    <div class="cols-md-4">
+      <p>ROI is <%= number_to_currency @roi %></p>
+    </div>
+  </div>
+<% end %>
+
+

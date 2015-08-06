@@ -1,5 +1,21 @@
-<h1>roy.</h1>
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Buildings</h2>
+      <p>Use this section to input info about new buildings you want to get a quote for.</p>
+      <p><%= link_to "View Buildings", buildings_path, class: "btn btn-default", role: "button" %></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Lights</h2>
+      <p>Add new lights for use in layout options, or edit details of existing lights</p>
+      <p><%= link_to "View Lights", lights_path, class: "btn btn-default", role: "button" %></p>
+   </div>
+    <div class="col-md-4">
+      <h2>Compare</h2>
+      <p>Use this section to get your ROI by comparing two different lighting layout options.</p>
+      <p><%= link_to "Compare Options", compare_path("go"), class: "btn btn-default", role: "button" %></p>
+    </div>
+  </div>
+</div>
 
-
-<p><%= link_to("Lights", lights_path) %></p>
-<p><%= link_to("Buildings", buildings_path) %></p>

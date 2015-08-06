@@ -1,2 +1,49 @@
-<h1>Options#show</h1>
-<p>Find me in app/views/options/show.html.erb</p>
+<div class="container-fluid">
+  <h2>
+    <span class="label label-warning"><%=@option.summary[:watts]%> watts total</span>
+    <span class="label label-info"><%=number_to_currency @option.summary[:installation]%> installed</span>
+    <span class="label label-success"><%=number_to_currency @option.summary[:pa]%> in electricity p.a.</span>
+  </h2>
+</div>
+
+<div class="col-md-7">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>light_id</th>
+        <th>Name</th>
+        <th>Count</th>
+        <th>Total Watts</th>
+        <th>Total Price</th>
+        <th></th>
+        <th>Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for light_id in @option.summary[:tally].keys %>
+        <tr>
+          <td><%= light_id %></td>
+          <td><%= Light.find(light_id).name %></td>
+          <td><%= @option.summary[:tally][light_id] %></td>
+          <td><%= Light.find(light_id).watts * @option.summary[:tally][light_id] %></td>
+          <td><%= number_to_currency(Light.find(light_id).price * @option.summary[:tally][light_id]) %></td>
+          <td><%= link_to "View", light_path(light_id)%></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-md-3">
+  <div class="list-group">
+    <a href=<%= edit_option_path(@option) %> class="list-group-item">
+      <h4 class="list-group-item-heading">Edit Option</h4>
+      <p class="list-group-item-text">Add different lights to the layout option.</p>
+    </a>
+    <a href=<%= building_path(@option.building) %> class="list-group-item">
+      <h4 class="list-group-item-heading">View Building</h4>
+      <p class="list-group-item-text">Return to the building for which this layout option was created.</p>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <ul>
+  <% for light in Light.all %>
+    <li><%=light.name%> <%= (link_to "add to option", option_path(@option, {light_id: light.id}), method: :patch) %></li>
+  <% end %>
+  </ul>
+</div>
+
+
+<div class="container">
+    <h3><%=@option.lights.count%> lights in Option</h3>
+
+    <ul>
+      <% for light_id in @option.summary[:tally].keys %>
+        <li> <%= "#{Light.find(light_id).name}: #{@option.summary[:tally][light_id]}" %> </li>
+      <% end %>
+    </ul>
+
+</div>

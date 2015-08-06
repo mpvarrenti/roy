@@ -1,5 +1,5 @@
-<h1>Creating new layout option for <%= @building.address %></h1>
-
 <%= form_for :option, url: options_path do |f| %>
   Name: <%= f.text_field :name %>
+  <%= f.hidden_field :building_id, value: @building.id %>
+  <%= f.submit "Create" %>
 <% end %>

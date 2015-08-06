@@ -1,6 +1,10 @@
-<%= form_for :light, url: lights_path do |f| %>
-  Name: <%= f.text_field :name %><br />
-  Watts : <%= f.number_field :watts %><br />
-  Price : <%= f.number_field :price %><br />
-  <%= f.submit %>
-<% end %>
+<div class="container">
+
+  <%= form_for :light, url: lights_path do |f| %>
+    Name: <%= f.text_field :name %><br />
+    Watts : <%= f.number_field :watts %><br />
+    Price : <%= f.number_field :price %><br />
+    <%= f.submit %>
+  <% end %>
+
+</div>

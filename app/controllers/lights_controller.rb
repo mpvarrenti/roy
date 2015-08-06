@@ -2,14 +2,20 @@ class LightsController < ApplicationController
 
 
   def index
+    @jumbo_h1 = "All Lights..."
+    @jumbo_p = "If you wanted table of data on lights, you've come to the right place."
     @lights = Light.all
   end
 
   def show
     @light = Light.find(params[:id])
+    @jumbo_h1 = @light.name
+    @jumbo_p = "Wow, what a bright spark."
   end
 
   def new
+    @jumbo_h1 = "Creating new Light..."
+    @jumbo_p = "Bring a little light into the world."
   end
 
   def create

@@ -1,0 +1,7 @@
+<h1>worked</h1>
+
+<ul>
+<% for light in @lights %>
+  <li><%= "#{light.name} at #{light.watts} watts for $#{light.price} (#{link_to 'Add', option_path(@option), method: :put})" %></li>
+<% end %>
+</ul>

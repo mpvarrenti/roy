@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="col-md-6">
+    <%= form_for :building, url: new_compare_path, method: :get, class: "form-control" do |f| %>
+      <%= label_tag "id", "Select Building..." %>
+      <%= f.select :id, Building.all.collect { |b| [ b.address, b.id ] }, include_blank: true, class:"form-control" %>
+      <%= f.submit "Select" %>
+    <% end %>
+</div>

@@ -1,10 +1,17 @@
-<h2> <%=@light.name%> </h2>
+<div id="watts">  </div>
 
 
-<div id="watts"> <%=@light.watts%> watts. </div>
+<h2>
+  <span class="label label-warning"><%=@light.watts%> watts</span>
+  <span class="label label-info"><%=number_to_currency @light.price%></span>
+</h2>
 
 
-<div id="price"> $<%=@light.price%> </div>
-
-
-<%= link_to "Lights", lights_path %>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%=@light.watts%> watts.</h3>
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>

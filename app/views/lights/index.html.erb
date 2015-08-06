@@ -1,18 +1,33 @@
-<h2>Lights Listing</h2>
-<%= link_to "New", new_light_path %>
+<div class="col-md-7">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Watts</th>
+        <th>Price</th>
+        <th></th>
+        <th>Admin</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for light in @lights %>
+        <tr>
+          <td><%= light.id %></td>
+          <td><%= light.name %></td>
+          <td><%= light.watts %></td>
+          <td><%= number_to_currency light.price %></td>
+          <td><%= link_to "View", light_path(light)%></td>
+          <td><%= button_to 'Delete', light_path(light), method: :delete, class: "btn btn-xs btn-danger" %></td>
+          <td><%= light.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<% if @lights %>
-  <% for light in @lights %>
-
-  <div style="border:thin solid black">
-    <p> name: <%= light.name %> </p>
-    <p> watts: <%= light.watts %> </p>
-    <p> price: <%= light.price %> </p>
-    <%= link_to "View", light_path(light)%>
-    <%= button_to 'Delete', light_path(light), method: :delete %>
-  </div>
-
-  <% end %>
-
-<% end %>
+<div class="col-md-3">
+  <%= link_to "Add New Light", new_light_path, class: "btn btn-default", roll: "button" %>
+</div>
 

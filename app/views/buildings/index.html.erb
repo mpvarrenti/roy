@@ -1,18 +1,31 @@
-<h2>Buildings Listing</h2>
-<%= link_to "New", new_building_path %>
+<div class="col-md-8">
+  
 
-<% if @buildings %>
-  <% for building in @buildings %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th>Options</th>
+        <th></th>
+        <th>Admin</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for building in @buildings %>
+        <tr>
+          <td><%= building.address %></td>
+          <td><%= Option.all.where(building_id:building.id).count %></td>
+          <td><%= link_to "View", building_path(building)%></td>
+          <td><%= button_to 'Delete', building_path(building), method: :delete, class: "btn btn-xs btn-danger" %></td>
+          <td><%= building.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-  <div style="border:thin solid black">
-    <p> address: <%= building.address %> </p>
+</div>
 
-    <p><%= link_to "View", building_path(building)%></p>
-    <%= button_to 'Delete', building_path(building), method: :delete %>
-  </div>
-
-  <% end %>
-
-<% end %>
-
-
+<div class="col-md-2">
+  <%= link_to "Add New Building", new_building_path, class: "btn btn-default", roll: "button" %>
+</div>
